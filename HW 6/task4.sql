@@ -21,11 +21,6 @@ where headwaiter is not NULL
 and staff_no not in (select waiter_no from restBill);
 
 -- 5
---Which customers had the largest single bill?
---List the customer name, 
---the name and surname of headwaiters, and the room 
---name where they were served on that occasion.
---select distinct cust_name, first_name, surname, room_name 
 select distinct cust_name, headwaiter, restRest_table.room_name 
 from restBill
 inner join restRest_table
