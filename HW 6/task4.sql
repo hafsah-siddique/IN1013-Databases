@@ -21,11 +21,13 @@ where headwaiter is not NULL
 and staff_no not in (select waiter_no from restBill);
 
 -- 5
-select distinct cust_name, headwaiter, restRest_table.room_name 
+select distinct cust_name, first_name, surname, restRest_table.room_name 
 from restBill
 inner join restRest_table
 on restBill.table_no=restRest_table.table_no
 inner join restRoom_management
 on restRoom_management.room_name=restRest_table.room_name
+inner join restStaff
+on restRoom_management.headwaiter=restStaff.staff_no
 where bill_total = (select max(bill_total) 
 from restBill) and room_date=bill_date;
